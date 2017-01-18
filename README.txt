@@ -31,6 +31,14 @@ The user should fill the "file/" folder with 42 audio files.
 
     Formats accepted: .mp3, .wav, .flac, and .aiff.
 
+You will probably need to change permissions to make the files executable. You can right-click them - properties - permissions - execute. Easier than that:
+
+	$ chmod 775 /path/to/file
+
+or, to the whole folder:
+	
+	$ chmod -R 775 /path/to/folder/
+
 After that, simply execute the "imaginary-landscape-5" file. You can click on it, and ask to execute it in a terminal, or do it via command line:
 
       $ /path/to/imaginary-landscape-5/imaginary-landscape-5.sh
@@ -54,7 +62,7 @@ The script will read the files in "files/" alphabetically, and use them in order
 
 The script "imaginary-landscape-5-record" will record its result to a file called "record.wav". Each time you call it it will overwrite this file. If you are going to use new files, don't forget to copy the old record elsewhere, or simply with another name. 
 
-They will also change some things with the files you provide (it will convert all mp3 files to wav files and convert mono files to stereo). The original files wil have been copied to the "backup/" folder. If you provide it with a lot of mp3 files and mono files it will take him some time to arrange everything.
+They will also change some things with the files you provide (it will convert all mp3 and flac files to wav files and convert mono files to stereo). The original files wil have been copied to the "backup/" folder. If you provide it with a lot of mp3 files and mono files it will take him some time to arrange everything.
 
 The backup system of this script is not very intelligent. It will copy again and overwrite all the files you have already backed up, every time you call the script. If you don't want to spend CPU with this, open the "imaginary-landscape-5" file and erase the following line: 
 
