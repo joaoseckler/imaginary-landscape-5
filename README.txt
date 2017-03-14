@@ -45,6 +45,7 @@ After that, simply execute the "imaginary-landscape-5" file. You can click on it
 
 You may want to record what you will be playing. In this case, use the "imaginary-landscape-5-record.sh" instead. Notice that this needs more processing, and may take some time to initialize (in my computer, it took 30 seconds).
 
+REQUIREMENTS
 
 This script is designed for GNU/linux.
 
@@ -60,9 +61,9 @@ OTHER CHARACTERISTICS
 
 The script will read the files in "files/" alphabetically, and use them in order of appearence in the song.
 
-The script "imaginary-landscape-5-record" will record its result to a file called "record.wav". Each time you call it it will overwrite this file. If you are going to use new files, don't forget to copy the old record elsewhere, or simply with another name. 
+The script "imaginary-landscape-5-record" will record its result to a file called "record.wav". Each time you call it it will overwrite this file. If you are going to use new files, don't forget to copy the old record elsewhere, or simply change it's name. 
 
-They will also change some things with the files you provide (it will convert all mp3 and flac files to wav files and convert mono files to stereo). The original files wil have been copied to the "backup/" folder. If you provide it with a lot of mp3 files and mono files it will take him some time to arrange everything.
+It will also change some things with the files you provide (it will convert all mp3 and flac files to wav files and convert mono files to stereo). The original files wil have been copied to the "backup/" folder. If you provide it with a lot of mp3 files and mono files it will take him some time to arrange everything.
 
 The backup system of this script is not very intelligent. It will copy again and overwrite all the files you have already backed up, every time you call the script. If you don't want to spend CPU with this, open the "imaginary-landscape-5" file and erase the following line: 
 
@@ -70,4 +71,14 @@ The backup system of this script is not very intelligent. It will copy again and
 
 Consider doing the same with imaginary-landscape-5-record.
 
+The script will read the files from their start point. If you are providing files that are intire songs (from an music album, for example), it is likely that they will have a few seconds of silence in the beginning, which would make some parts of the resulting song not so interesting (particularly the first seconds, that are made out of severel tiny bits of tape). To fix this, you can change where the script will beginn reading the files. The following example makes it read from the 10th second onward:
 
+
+$ sed s/"tini = 0"/"tini = 50"/ </path/to/imaginary-landscape-5/imaginary.scd > eraseme ; mv
+eraseme /path/to/imaginary.scd
+
+For other starting point, replace 50 (from "tini = 50") for a number five times the number of seconds you desire to be the starting point. 
+
+Consider doing the same with imaginary-record.scd
+
+This command will replace every occurence of the string tini = 0 in the script for the string you provide. You could change that manually, but this string occurs 16 times in the code. 
