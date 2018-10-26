@@ -33,11 +33,11 @@ The user should fill the "file/" folder with 42 audio files.
 
 You will probably need to change permissions to make the files executable. You can right-click them - properties - permissions - execute. Easier than that:
 
-	$ chmod 775 /path/to/file
+	$ chmod u+x /path/to/file
 
 or, to the whole folder:
 	
-	$ chmod -R 775 /path/to/folder/
+	$ chmod -R u+x /path/to/folder/
 
 After that, simply execute the "imaginary-landscape-5" file. You can click on it, and ask to execute it in a terminal, or do it via command line:
 
@@ -57,28 +57,20 @@ run the following command on root mode (valid for debian-based distros):
 
 
 
-OTHER CHARACTERISTICS
+FEATURES/PROBLEMS
 
 The script will read the files in "files/" alphabetically, and use them in order of appearence in the song.
 
 The script "imaginary-landscape-5-record" will record its result to a file called "record.wav". Each time you call it it will overwrite this file. If you are going to use new files, don't forget to copy the old record elsewhere, or simply change it's name. 
 
-It will also change some things with the files you provide (it will convert all mp3 and flac files to wav files and convert mono files to stereo). The original files wil have been copied to the "backup/" folder. If you provide it with a lot of mp3 files and mono files it will take him some time to arrange everything.
+It will also change some things with the files you provide (it will convert all mp3 and flac files to wav files and convert mono files to stereo). THE ORIGINAL FILES WILL NOT BE PRESERVED, as we assume the user has a copy of the files he is using elsewhere. Also, if you provide it with a lot of mp3 files and mono files it will take him some time to arrange everything.
 
-The backup system of this script is not very intelligent. It will copy again and overwrite all the files you have already backed up, every time you call the script. If you don't want to spend CPU with this, open the "imaginary-landscape-5" file and erase the following line: 
+The script will read the files from their start point. If you are providing files that are entire songs (from an music album, for example), it is likely that they will have a few seconds of silence in the beginning, which would make some parts of the resulting song not so interesting (particularly the first seconds, that are made out of several tiny bits of tape). To fix this, you can change where the script will begin reading the files. The default starting point is 5 seconds. The following example makes it read from the 10th second onward:
 
-	cp -v ${SCRIPT_DIR}/files/* ${SCRIPT_DIR}/backup/
-
-Consider doing the same with imaginary-landscape-5-record.
-
-The script will read the files from their start point. If you are providing files that are intire songs (from an music album, for example), it is likely that they will have a few seconds of silence in the beginning, which would make some parts of the resulting song not so interesting (particularly the first seconds, that are made out of severel tiny bits of tape). To fix this, you can change where the script will beginn reading the files. The following example makes it read from the 10th second onward:
-
-
-$ sed s/"tini = 0"/"tini = 50"/ </path/to/imaginary-landscape-5/imaginary.scd > eraseme ; mv
-eraseme /path/to/imaginary.scd
+$ sed s/"~initial_time = 25"/"~intial_time = 50"/ </path/to/imaginary-landscape-5/imaginary.scd > eraseme ; mv eraseme /path/to/imaginary.scd
 
 For other starting point, replace 50 (from "tini = 50") for a number five times the number of seconds you desire to be the starting point. 
 
 Consider doing the same with imaginary-record.scd
 
-This command will replace every occurence of the string tini = 0 in the script for the string you provide. You could change that manually, but this string occurs 16 times in the code. 
+This command will replace the occurrence of the string "~initial_time = 0" in the script for the string you provide. You can also change that manually.

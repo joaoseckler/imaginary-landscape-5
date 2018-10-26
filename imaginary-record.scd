@@ -5,6 +5,17 @@
 // Adding the buffers in array ~files
 // files should be in ./files/
 
+// This variable sets where the script starts reading from the file. Default is 25.
+
+// From the README file:
+// The script will read the files from their start point. If you are providing files that
+// are entire songs (from an music album, for example), it is likely that they will have 
+// a few seconds of silence in the beginning, which would make some parts of the 
+// resulting song not so interesting (particularly the first seconds, that are made out 
+// 	of several tiny bits of tape). To fix this, you can change where the script will
+//  begin reading the files.
+
+~initial_time = 25;
 
 
 ~readBuffers = {
@@ -503,7 +514,7 @@ SynthDef(\play1, {
 (
 ~rout0 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 0;
 	do(~buf[num].size, {
 		arg index;
@@ -518,7 +529,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }
@@ -527,7 +538,7 @@ SynthDef(\play1, {
 (
 ~rout1 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 0;
 	do(~buf[num].size, {
 		arg index;
@@ -542,7 +553,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }
@@ -551,7 +562,7 @@ SynthDef(\play1, {
 (
 ~rout2 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 1;
 	do(~buf[num].size, {
 		arg index;
@@ -566,7 +577,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }
@@ -575,7 +586,7 @@ SynthDef(\play1, {
 (
 ~rout3 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 3;
 	do(~buf[num].size, {
 		arg index;
@@ -590,7 +601,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }
@@ -599,7 +610,7 @@ SynthDef(\play1, {
 (
 ~rout4 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 4;
 	do(~buf[num].size, {
 		arg index;
@@ -614,7 +625,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }
@@ -623,7 +634,7 @@ SynthDef(\play1, {
 (
 ~rout5 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 5;
 	do(~buf[num].size, {
 		arg index;
@@ -638,7 +649,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }
@@ -647,7 +658,7 @@ SynthDef(\play1, {
 (
 ~rout6 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 6;
 	do(~buf[num].size, {
 		arg index;
@@ -662,7 +673,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }
@@ -671,7 +682,7 @@ SynthDef(\play1, {
 (
 ~rout7 = Routine {
 	var tini, num;
-	tini = 0;
+	tini = ~initial_time;
 	num = 7;
 	do(~buf[num].size, {
 		arg index;
@@ -686,7 +697,7 @@ SynthDef(\play1, {
 		if(
 			~buf[num][index] == ~buf[num][index + 1],
 			{ tini = tini + ~ampdur2[num][index] },
-			{ tini = 0 }
+			{ tini = ~initial_time }
 		);
 	});	
 }

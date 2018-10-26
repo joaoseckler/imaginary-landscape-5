@@ -9,9 +9,6 @@
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 
-echo "Files backup..."
-cp -v ${SCRIPT_DIR}/files/* ${SCRIPT_DIR}/backup/
-
 find ${SCRIPT_DIR}/files/ -iname "*.mp3" -exec sox -V3 {} {}.converted.wav channels 2 \;
 
 rm ${SCRIPT_DIR}/files/*.mp3
